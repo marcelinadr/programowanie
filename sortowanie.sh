@@ -29,7 +29,7 @@ echo "sortowanie"
 echo ${tablica[@]}
 for ((j=0;j<${#tablica[@]};j++));do
 	for ((i=0;i<((${#tablica[@]}-$j));i++));do
-		if((${tablica[$i]} > ${tablica[(($i+1))]})); then
+		if ((${tablica[$i]} > ${tablica[(($i+1))]})); then
 			bufor=${tablica[$i]}
 			tablica[$i]=${tablica[(($i+1))]}
 			tablica[(($i+1))]=$bufor
