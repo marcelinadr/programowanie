@@ -1,0 +1,122 @@
+#!/usr/bin/bash
+
+#Wypisz wszystkie liczby podzielne przez 100 i niepodzielne przez 200 lub 400 z przedziału 75 – 1512
+for ((i=75; i<1512; i++)); do
+	if (( i%100==0 &&  i%200!=0 && i%400!=0)); then 
+		echo $i
+	fi
+done
+
+#Korzystając z pętli while wyświetl co drugą liczbę podzielną przez 6 z przedziału podanego przez użytkownika. 
+echo "Podaj poczatke przedzialu: "
+read a
+
+echo "Podaj konie przedzialu: "
+read b
+
+echo " Przedzial od $a do $b"
+
+i=$a
+while ((i>=a && i<=b)); do
+
+        if(( i%6==0 )); then
+
+                        echo $i
+                        ((i++))
+                else
+                        ((i++))
+
+        fi
+done
+
+#Zadeklaruj dwie tablice równych rozmiarów. Następnie wykonaj sortowanie pierwszej rosnąco drugiej malejąco. Wyświetl obie tablice przed rozpoczęciem sortowania i po jego zakończeniu, zweryfikuj czy zostały poprawnie posortowane.
+declare -a tablica1=(1 200 5)
+declare -a tablica2=(1 97 3)
+echo "tablica 1 ${tablica1[@]} oraz tablica 2 ${tablica2[@]}"
+liczba_elementow=${#tablica1[@]}
+
+
+for ((i=0; i<$liczba_elementow; i++)); do
+    for ((j=0; j<$((liczba_elementow-i-1)); j++)); do
+
+
+        if ((${tablica1[j]} <  ${tablica1[j+1]})); then
+echo ${tablica1[@]}
+
+            temp=${tablica1[j]}
+            tablica1[j]=${tablica1[j+1]}
+            tablica1[j+1]=$temp
+        fi
+    done
+done
+
+liczba_elementow=${#tablica2[@]}
+
+
+for ((i=0; i<$liczba_elementow; i++)); do
+    for ((j=0; j<$((liczba_elementow-i-1)); j++)); do
+
+
+        if ((${tablica2[j]} >  ${tablica2[j+1]})); then
+echo ${tablica2[@]}
+
+            temp=${tablica2[j]}
+            tablica2[j]=${tablica2[j+1]}
+            tablica2[j+1]=$temp
+        fi
+    done
+done
+
+
+
+echo "Posortowana tablica1: ${tablica1[@]} oraz posrtowa tablica2 ${tablica2[@]}"
+#Korzystając z tablic z poprzedniego zadania wykonaj sumowanie wszystkich elementów zgodnie z kluczem największy z pierwszej tablicy z największym z drugiej, poprzednik największego z pierwszej tablicy z następnikiem największego drugiej tablicy, itd.
+declare -a tablica1=(1 200 5)
+declare -a tablica2=(1 97 3)
+echo "tablica 1 ${tablica1[@]} oraz tablica 2 ${tablica2[@]}"
+liczba_elementow=${#tablica1[@]}
+
+
+for ((i=0; i<$liczba_elementow; i++)); do
+    for ((j=0; j<$((liczba_elementow-i-1)); j++)); do
+
+
+        if ((${tablica1[j]} <  ${tablica1[j+1]})); then
+echo ${tablica1[@]}
+
+            temp=${tablica1[j]}
+            tablica1[j]=${tablica1[j+1]}
+            tablica1[j+1]=$temp
+        fi
+    done
+done
+
+liczba_elementow=${#tablica2[@]}
+for ((i=0; i<$liczba_elementow; i++)); do
+    for ((j=0; j<$((liczba_elementow-i-1)); j++)); do
+
+
+        if ((${tablica2[j]} >  ${tablica2[j+1]})); then
+echo ${tablica2[@]}
+
+            temp=${tablica2[j]}
+            tablica2[j]=${tablica2[j+1]}
+            tablica2[j+1]=$temp
+        fi
+    done
+done
+
+
+
+echo "Posortowana tablica1: ${tablica1[@]} oraz posrtowa tablica2 ${tablica2[@]}"
+d=${#tablica2[@]}
+u=2
+declare -a tablica3=()
+for ((z=0; z<d; z++)); do
+	a=${tablica1[z]}
+	b=${tablica2[u]}
+	((suma=$a+$b)) 
+	tablica3[z]=$suma	
+	((u--))
+done
+echo "Dodane wartosci ${tablica3[@]}"
